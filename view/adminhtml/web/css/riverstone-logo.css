@@ -1,0 +1,14 @@
+.config-nav .riverstone-logo .admin__page-nav-title::before {
+  content: '';
+  background-image: url(../images/favicon.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  top: 11px;
+  }
+  
+  .config-nav .riverstone-logo .admin__page-nav-title strong {
+    margin-left: 40px;
+  }

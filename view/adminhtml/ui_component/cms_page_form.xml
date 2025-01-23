@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <component component="Riverstone_AiContentGenerator/js/cms-ai" name="cms-ai" class="Riverstone\AiContentGenerator\Ui\Generator">
+        <argument name="data" xsi:type="array">
+            <item name="completion_config" xsi:type="object">Riverstone\AiContentGenerator\Model\CompletionCmsConfig</item>
+        </argument>
+    </component>
+    <fieldset name="search_engine_optimisation" sortOrder="20">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Search Engine Optimization</label>
+        </settings>
+        <field name="identifier" formElement="input" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">URL Key</label>
+                <dataScope>identifier</dataScope>
+            </settings>
+        </field>
+        <field name="meta_title" formElement="input" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Title</label>
+                <dataScope>meta_title</dataScope>
+            </settings>
+        </field>
+        <container name="meta_title_group" component="Magento_Ui/js/form/components/group" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="required" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </container>
+        <field name="meta_keywords" formElement="textarea" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Keywords</label>
+                <dataScope>meta_keywords</dataScope>
+            </settings>
+        </field>
+        <container name="meta_keywords_group" component="Magento_Ui/js/form/components/group" sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="required" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </container>
+        <field name="meta_description" formElement="textarea" sortOrder="60">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Description</label>
+                <dataScope>meta_description</dataScope>
+            </settings>
+        </field>
+        <container name="meta_description_group" component="Magento_Ui/js/form/components/group" sortOrder="70">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="required" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </container>
+    </fieldset>
+</form>

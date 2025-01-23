@@ -1,0 +1,103 @@
+.block-riverstone-ai.block {
+    border: 1px solid #bbbbbb;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+    .block-title {
+        background: #f8f8f8;
+        padding: 2rem 2.5rem;
+        .title {
+            font-size: 2rem;
+            font-weight: 200;
+        }
+        &:after {
+            clear: both;
+        }
+    }
+    .block-status {
+        display: inline-block;
+        vertical-align: middle;
+        padding-right: 8px;
+        .img {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+        }
+        .ok {
+            background: url(../Riverstone_AiContentGenerator/images/check_mark_32.png) no-repeat 0 0;
+            background-size: contain;
+        }
+        .fail {
+            background: url(../Riverstone_AiContentGenerator/images/cross_mark_32.png) no-repeat 0 0;
+            background-size: contain;
+        }
+    }
+    ul {
+        line-height: 2.5rem;
+    }
+    li.issue {
+        list-style-type: square;
+    }
+    ul.issues-list {
+        list-style: none inside none;
+        .scope-title {
+            font-weight: bold;
+        }
+    }
+    .riverstone-ai-messages {
+        padding: 1rem 2.5rem;
+    }
+    a.show-all {
+        cursor: pointer;
+    }
+}
+.riverstone-ai-text-column.data-grid-cell-content {
+    & {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    &.riverstone-ai-notext {
+        justify-content: space-around;
+    }
+    .riverstone-ai-text-column-value, .riverstone-ai-mark {
+        display: flex;
+    }
+    .riverstone-ai-mark {
+        min-width: 32px;
+        height: 32px;
+        margin-right: 5px;
+    }
+    .riverstone-ai-checkmark {
+        background: url(../Riverstone_AiContentGenerator/images/check_mark_32.png) no-repeat 0 0;
+    }
+    .riverstone-ai-crossmark {
+        background: url(../Riverstone_AiContentGenerator/images/cross_mark_32.png) no-repeat 0 0;
+    }
+}
+.admin__field.riverstone-ai-field {
+    margin-top: -25px;
+    min-width: 140px;
+}
+.fieldset-wrapper.riverstone-ai-fieldset {
+    .riverstone-ai-control-label {
+        line-height: 3.3rem;
+    }
+}
+#custom-page-modal, #fetch-ai-replace, #generated_content_div {
+    display: none;
+}
+
+.popup-form-label span {
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+form#fetch_ai_content-form {
+    width: 75%;
+    margin: 20px auto;
+}
+
+.admin__field.ai-generate {
+    text-align: center;
+}

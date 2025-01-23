@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="riverstone" translate="label" sortOrder="100" class="riverstone-logo">
+            <label>Riverstone</label>
+        </tab>
+        <section id="riverstone_aicontentgenerator" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <tab>riverstone</tab>
+            <label>AI Content Generator</label>
+            <resource>Riverstone_AiContentGenerator::riverstone_aicontentgenerator</resource>
+            <group id="general" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AI Content</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+            </group>
+            <group id="api" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>API Configuration</label>
+                <field id="base_url" translate="label" type="text" sortOrder="0" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Base URL</label>
+                </field>
+                <field id="token" translate="label" type="obscure" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>API Key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="model" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Model</label>
+                    <comment><![CDATA[<a href="https://platform.openai.com/docs/models" target="_blank">Click to know the Usage of the Model</a>]]></comment>
+                    <source_model>Riverstone\AiContentGenerator\Model\Config\Source\Model</source_model>
+                </field>
+            </group>
+            <group id="product_settings" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Settings</label>
+                 <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable for Product Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="attributes" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Attributes</label>
+                    <backend_model>Riverstone\AiContentGenerator\Block\Adminhtml\Config\Backend\ArraySerialized</backend_model>
+                    <frontend_model>Riverstone\AiContentGenerator\Block\Adminhtml\Product\DynamicProductAttribute</frontend_model>
+                    <frontend_class>validate-no-duplicates</frontend_class>
+                    <comment>Note: Use %s as a placeholder for the product name.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="category_settings" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Category Settings</label>
+                 <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable for Category Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="category_fields" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Attributes</label>
+                    <backend_model>Riverstone\AiContentGenerator\Block\Adminhtml\Config\Backend\ArraySerialized</backend_model>
+                    <frontend_model>Riverstone\AiContentGenerator\Block\Adminhtml\Category\DynamicCategoryFields</frontend_model>
+                    <frontend_class>validate-no-duplicates</frontend_class>
+                    <comment>Note: Use %s as a placeholder for the Category Name.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="cms_settings" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>CMS Page Settings</label>
+                 <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable for CMS Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="category_fields" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Attributes</label>
+                    <backend_model>Riverstone\AiContentGenerator\Block\Adminhtml\Config\Backend\ArraySerialized</backend_model>
+                    <frontend_model>Riverstone\AiContentGenerator\Block\Adminhtml\Cms\DynamicCmsFields</frontend_model>
+                    <frontend_class>validate-no-duplicates</frontend_class>
+                    <comment>Note: Use %s as a placeholder for the CMS Page Name.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

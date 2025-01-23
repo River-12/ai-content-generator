@@ -1,0 +1,113 @@
+<?php
+/** @var \Riverstone\AiContentGenerator\Block\Adminhtml\Product\Helper $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+
+<div data-bind="scope: 'riverstone-ai-product-helper'" class="riverstone-ai-product-helper">
+    <!-- ko template: getTemplate() -->
+    <!-- /ko -->
+</div>
+<input type="hidden" id="openai_url" name="openai_url"
+    value="<?php echo $block->getUrl('riverstone_aicontentgenerator/generate/index')?>">
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "riverstone-ai-product-helper": <?= /* @noEscape */ $block->getComponentJsonConfig() ?>
+                }
+            }
+        }
+    }
+</script>
+<div id="custom-page-modal" style="display:none;">
+    <form id="fetch_ai_content-form">
+        <div class="admin__field">
+            <div class="popup-form-label"><label><span id="dynamic-span"></span></label></div>
+            <div class="admin__field-control">
+                <input class="admin__control-text" id="current_attribute_key" type="hidden" name="current_value">
+                <input readonly class="admin__control-text" id="current_attribute_value" type="text" name="current_value">
+                <input class="admin__control-text" id="attribute_type" type="hidden" name="attribute_name"/>
+            </div>
+        </div>
+        <div class="admin__field">
+            <div class="popup-form-label"><label><span><?= $block->escapeHtml(__('Prompt')) ?></span></label></div>
+            <div class="admin__field-control">
+                <textarea id="default_prompt_value" name="default_prompt" rows="4" cols="15" class="textarea admin__control-textarea"></textarea>
+            </div>
+        </div>
+        <div class="admin__field" id="generated_content_div">
+            <div class="popup-form-label"><label><span><?= $block->escapeHtml(__('Generated Content')) ?></span></label></div>
+            <div class="admin__field-control">
+                <!-- <input class="admin__control-text" type="text" id="generated_content"
+                    name="prompt"> -->
+                <textarea id="generated_content" name="generated_content" rows="4" cols="15" class="textarea admin__control-textarea"></textarea>
+                </div>
+        </div>
+        <div class="admin__field ai-submit">
+            <button class="action-default primary generate" type="button" id="fetch-ai-generate"><?= $block->escapeHtml(__('Generate Content')) ?></button>
+            <button class="action- scalable action-secondary replace" type="button" id="fetch-ai-replace"><?= $block->escapeHtml(__('Replace Content')) ?></button>
+        </div>
+    </form>
+</div>
+<script>
+    require(['jquery', 'mage/adminhtml/wysiwyg/tiny_mce/setup'], function ($) {
+        $("body").delegate("#fetch-ai-generate", "click", function() {
+ 
+            let data = new FormData();
+            let prompt = $("#default_prompt_value").val();
+            let attributeName = $("#current_attribute_key").val();
+            if(prompt == ''){
+                alert("Prompt Cannot be empty");
+            } else {
+                let payload ={
+                    'form_key': FORM_KEY,
+                    'prompt': prompt,
+                };
+
+            let result = true;
+
+            $.ajax({
+            type: 'POST',
+            url: jQuery('#openai_url').val(),
+            dataType: 'json',
+            cache: false,
+            showLoader: true,
+            data: {'form_key': FORM_KEY, 'prompt': prompt},
+            success : function(result){
+                var status = result.type;
+                if(status == "success"){
+                    $('#generated_content_div').show();
+                    $('#generated_content').val(result.result);
+                    $('#fetch-ai-replace').show();
+                }
+                else{
+                    alert("something went wrong");
+                }
+            }
+            });
+            }
+        });
+        $("body").delegate("#fetch-ai-replace", "click", function() {
+            var attributeName = $("#current_attribute_key").val();
+            var attributeType = $("#attribute_type").val();
+
+            var selector = '[name="product[' + attributeName + ']"]';
+            var inputElement = $(selector);
+
+            var attributeName = $('#current_attribute_key').val();
+            if(attributeType == '1'){
+               
+                var editor = tinymce.get('product_form_'+attributeName);
+                if (editor) {
+                    editor.setContent('<p>'+$('#generated_content').val()+'</p>');
+                }
+                $('#product_form_'+attributeName).val('<p>'+$('#generated_content').val()+'</p>').trigger('change');
+            }else{
+                inputElement.val($('#generated_content').val()).trigger('change');
+            }
+            
+            $('#custom-page-modal').modal('closeModal');
+        })
+    });
+</script>

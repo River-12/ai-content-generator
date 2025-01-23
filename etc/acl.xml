@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::system">
+                    <resource id="Riverstone_AiContentGenerator::riverstone_aicontentgenerator" title="Riverstone AI" translate="title" sortOrder="0">
+                        <resource id="Riverstone_AiContentGenerator::actions" title="Actions" translate="title">
+                            <resource id="Riverstone_AiContentGenerator::generate" title="Generate text" translate="title"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

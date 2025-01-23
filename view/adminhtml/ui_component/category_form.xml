@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <component component="Riverstone_AiContentGenerator/js/category-ai" name="category-ai" class="Riverstone\AiContentGenerator\Ui\Generator">
+        <argument name="data" xsi:type="array">
+            <item name="completion_config" xsi:type="object">Riverstone\AiContentGenerator\Model\CompletionCategoryConfig</item>
+        </argument>
+    </component>
+    <fieldset name="search_engine_optimization" sortOrder="30">
+        <container name="meta_title_group" component="Magento_Ui/js/form/components/group" sortOrder="135">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="required" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </container>
+        <container name="meta_keywords_group" component="Magento_Ui/js/form/components/group" sortOrder="145">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="required" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </container>
+        <container name="meta_description_group" component="Magento_Ui/js/form/components/group" sortOrder="155">
+            <argument name="data" xsi:type="array">
+                <item name="type" xsi:type="string">group</item>
+                <item name="config" xsi:type="array">
+                    <item name="required" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </container>
+    </fieldset>
+</form>
